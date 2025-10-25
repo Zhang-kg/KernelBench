@@ -21,7 +21,7 @@ class Model(nn.Module):
                 attr = getattr(self, name, None)
                 if attr is None:
                     continue
-                if hasattr(attr, 'weight'):
+                if hasattr(attr, 'weight') and attr.weight is not None:
                     attr.weight.copy_(torch.randn_like(attr.weight))
                     attr.weight.requires_grad = False
                     bias_attr = getattr(attr, 'bias', None)
